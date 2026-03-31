@@ -74,6 +74,7 @@ export const PianoKeyboard: React.FC<PianoKeyboardProps> = ({
           return (
             <div
               key={k.note}
+              data-note={k.note}
               onMouseDown={() => onPlayNote(k.note)}
               className={`
                 relative cursor-pointer transition-all duration-75 overflow-hidden

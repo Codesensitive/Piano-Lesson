@@ -5,15 +5,18 @@ import { PianoKeyboard } from './components/PianoKeyboard';
 import { LessonFeedback } from './components/LessonFeedback';
 import { Dashboard } from './components/Dashboard';
 import { ModuleDetail } from './components/ModuleDetail';
+import { MidiPlayer } from './components/MidiPlayer';
 import { audioEngine } from './AudioEngine';
 import type { Module } from './Curriculum';
 import { completeSubMission } from './Curriculum';
+import type { Midi } from '@tonejs/midi';
 
 function App() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'module' | 'lesson'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'module' | 'lesson' | 'midiPlayer'>('dashboard');
   
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [activeSubMission, setActiveSubMission] = useState<SubMission | null>(null);
+  const [activeMidi, setActiveMidi] = useState<Midi | null>(null);
 
   const engineRef = useRef<LessonEngine | null>(null);
   
@@ -38,6 +41,12 @@ function App() {
 
   const handleReturnToDashboard = () => setCurrentView('dashboard');
   const handleReturnToModule = () => setCurrentView('module');
+
+  const handleMidiLoaded = async (midi: Midi) => {
+    await audioEngine.unlock();
+    setActiveMidi(midi);
+    setCurrentView('midiPlayer');
+  };
 
   const handlePlayNote = (note: string) => {
     if (currentView !== 'lesson' || !engineRef.current || !activeSubMission) return;
@@ -73,7 +82,7 @@ function App() {
   // ----------------------------------------------------------------------
 
   if (currentView === 'dashboard') {
-    return <Dashboard onSelectModule={handleSelectModule} />;
+    return <Dashboard onSelectModule={handleSelectModule} onMidiLoaded={handleMidiLoaded} />;
   }
 
   if (currentView === 'module' && activeModule) {
@@ -123,6 +132,10 @@ function App() {
         </div>
       </div>
     );
+  }
+
+  if (currentView === 'midiPlayer' && activeMidi) {
+    return <MidiPlayer midi={activeMidi} onExit={handleReturnToDashboard} />;
   }
 
   return null;

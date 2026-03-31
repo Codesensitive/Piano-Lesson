@@ -83,6 +83,13 @@ export class AudioEngine {
     }
   }
 
+  // Used by synthesized MIDI playback
+  public scheduleNote(note: string, duration: number, time: number, velocity: number) {
+    if (this.isReady && this.sampler) {
+      this.sampler.triggerAttackRelease(note, duration, time, velocity);
+    }
+  }
+
   public onReady(cb: () => void) {
     if (this.isReady) {
       cb();
