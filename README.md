@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Global Piano Academy 🎹
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional-grade, interactive, 4-phase web application explicitly designed to train absolute beginners into capable piano performers. Built with **React, TypeScript, Vite, TailwindCSS (V4), and Tone.js**, this is far more than a simple MIDI keyboard toy—it is a deeply structured E-Learning SaaS architecture.
 
-Currently, two official plugins are available:
+![UI Overview Demo Sequence](./demo.webp)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **The 4-Phase Curriculum**: A complete pedagogical roadmap divided into specific, unlockable Modules ranging from *Foundation & Posture* to deep *Chords & Arpeggios*.
+- **The Granular 3-Tier Routing Engine**: Seamless transition between the **Conservatory Dashboard** → **Module Detail Breakdown** → **Independent Sub-Mission Drill**.
+- **Interactive Synthesia Gameplay Simulator**: 
+  - Drag and drop **any .mid file in the world** directly onto the Dashboard.
+  - The application natively reads the tracks, schedules the absolute audio timeline, and forces the physical piano keys to light up perfectly in sync with the song to teach you visually.
+  - Evaluate your accuracy with a built-in rhythm game validator (Green for immediate success, Red for tracking misses).
+- **Infinite Tone Engine**: Bypasses browser latency policies strictly by compiling MIDI time directly against native `AudioContext` nodes and passing sequences accurately down physical UI components cleanly to eradicate race conditions.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local Setup & Development
 
-## Expanding the ESLint configuration
+This project uses the modern Node ecosystem (Vite) and does not require complex backend scaffolding to execute.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Requirements
+Ensure you have [Node.js](https://nodejs.org/) installed (v18+ recommended).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Installation
+Clone the repository and install all strict package dependencies.
+```bash
+git clone https://github.com/YourName/Piano-Lesson.git
+cd Piano-Lesson
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Run the Conservatory locally
+Launch the fast development server:
+```bash
+npm run dev
 ```
+Open `http://localhost:5173/` in your browser.
+
+## Built With
+- **React 18** *(Component Architecture)*
+- **Tone.js** *(Precision Audio & Transport Engine)*
+- **@tonejs/midi** *(In-browser binary sequencing)*
+- **TailwindCSS 4** *(Glassmorphism, utility-first aesthetics)*
+- **TypeScript** *(Strict validation and interface adherence)*
+
+> "Master the keyboard step-by-step, or simply drop a song and jam immediately."
