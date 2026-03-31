@@ -1,11 +1,14 @@
 import { COURSE_CURRICULUM, isModuleUnlocked, isModuleMastered } from '../Curriculum';
 import type { Module } from '../Curriculum';
+import { MidiDropzone } from './MidiDropzone';
+import type { Midi } from '@tonejs/midi';
 
 interface DashboardProps {
   onSelectModule: (module: Module) => void;
+  onMidiLoaded: (midi: Midi) => void;
 }
 
-export function Dashboard({ onSelectModule }: DashboardProps) {
+export function Dashboard({ onSelectModule, onMidiLoaded }: DashboardProps) {
   return (
     <div className="flex flex-col min-h-screen pt-24 pb-12 px-6 lg:px-24 relative overflow-hidden">
       
@@ -15,12 +18,16 @@ export function Dashboard({ onSelectModule }: DashboardProps) {
 
       <header className="mb-16 z-10">
         <h1 className="text-5xl lg:text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 tracking-tight mb-4 drop-shadow-lg">
-          Global Conservatory
+          Global Piano Academy
         </h1>
         <p className="text-gray-300 text-lg lg:text-xl max-w-2xl font-light">
-          Your complete roadmap to mastering the keyboard. Select a Module to reveal its specific practical sub-missions.
+          Your complete roadmap to mastering the keyboard. Select a Module or Drop a custom song below.
         </p>
       </header>
+
+      <div className="relative z-10 w-full">
+        <MidiDropzone onMidiLoaded={onMidiLoaded} />
+      </div>
 
       <div className="flex flex-col gap-12 z-10">
         {COURSE_CURRICULUM.map((phase, pIndex) => (
