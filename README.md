@@ -2,7 +2,7 @@
 
 A professional-grade, interactive, 4-phase web application explicitly designed to train absolute beginners into capable piano performers. Built with **React, TypeScript, Vite, TailwindCSS (V4), and Tone.js**, this is far more than a simple MIDI keyboard toy—it is a deeply structured E-Learning SaaS architecture.
 
-![UI Overview Demo Sequence](./demo.webp)
+![UI Overview Demo Sequence](./demo.png)
 
 ## Features
 
